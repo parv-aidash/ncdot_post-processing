@@ -317,6 +317,7 @@ if __name__ == "__main__":
     tool = 'labelbox'
     env = 'dot'
     lz_list =[]
+    batch_name = 'mitchell_GIS_10112022_batch3_LB'
     schedule_shp_extration(tool)
     print("START")
     
@@ -332,10 +333,10 @@ if __name__ == "__main__":
     os.chdir(dir_path)
     
     #wilson_GIS_15092022_batch1_LB_polyI
-    point_target_shp_name = 'mitchell_GIS_10112022_batch3_LB_point.shp'
-    point_target_shp_file_folder = 'mitchell_GIS_10112022_batch3_LB_point'
-    poly_target_shp_name = 'mitchell_GIS_10112022_batch3_LB_poly.shp'
-    poly_target_shp_file_folder = 'mitchell_GIS_10112022_batch3_LB_poly'
+    point_target_shp_name = batch_name+'_point.shp'
+    point_target_shp_file_folder = batch_name+'_point'
+    poly_target_shp_name = batch_name+'_poly.shp'
+    poly_target_shp_file_folder = batch_name+'_LB_poly'
     poly_out_path_temp = dir_path+tool+'/target/'+poly_target_shp_file_folder+'/temp/'+poly_target_shp_name
     point_out_path = dir_path+tool+'/target/'+point_target_shp_file_folder+'/'+point_target_shp_name
     poly_out_path = dir_path+tool+'/target/'+poly_target_shp_file_folder+'/'+poly_target_shp_name
