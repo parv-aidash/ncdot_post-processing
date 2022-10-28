@@ -52,7 +52,7 @@ class shpDataExtractor:
     def batch_scheduler(self, tool):
         import boto3
         from botocore.errorfactory import ClientError   
-        all_files = self.list_files(f"ncdot/final_data/{tool}/shapefiles/batch3/mitchell_GIS_10112022_batch3_LB/")
+        all_files = self.list_files(f"ncdot/final_data/{tool}/shapefiles/batch5/div4_GIS_20102022_batch1_LB/")
         all_files = sorted(all_files)
         ext = [".shp", ".shx", ".prj", ".dbf", ".cpg", ".json", ".csv"]
         all_files = [x for x in all_files if x.endswith(tuple(ext))]
@@ -317,7 +317,7 @@ if __name__ == "__main__":
     tool = 'labelbox'
     env = 'dot'
     lz_list =[]
-    batch_name = 'mitchell_GIS_10112022_batch3_LB'
+    batch_name = 'div4_GIS_20102022_batch1_LB'
     schedule_shp_extration(tool)
     print("START")
     
@@ -336,7 +336,7 @@ if __name__ == "__main__":
     point_target_shp_name = batch_name+'_point.shp'
     point_target_shp_file_folder = batch_name+'_point'
     poly_target_shp_name = batch_name+'_poly.shp'
-    poly_target_shp_file_folder = batch_name+'_LB_poly'
+    poly_target_shp_file_folder = batch_name+'_poly'
     poly_out_path_temp = dir_path+tool+'/target/'+poly_target_shp_file_folder+'/temp/'+poly_target_shp_name
     point_out_path = dir_path+tool+'/target/'+point_target_shp_file_folder+'/'+point_target_shp_name
     poly_out_path = dir_path+tool+'/target/'+poly_target_shp_file_folder+'/'+poly_target_shp_name

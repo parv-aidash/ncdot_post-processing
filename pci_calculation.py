@@ -42,7 +42,7 @@ def get_route_area(rid, begin_mp, to_mp):
 
     return _area_m2, _len_m, _width_m
 
-def pci_score(route_area, df):
+def pci_score(route_area, length_in_ft, df):
     penalties = {}
     counts = {}
     areas = {}
@@ -119,7 +119,9 @@ def pci_score(route_area, df):
 
     _ratio_transverse = _ratio_transverse_light + _ratio_transverse_moderate + _ratio_transverse_severe
     max_transverse = max(_ratio_transverse_light, _ratio_transverse_moderate, _ratio_transverse_severe)
-    if _ratio_transverse >= 50:
+    #if _ratio_transverse >= 50:
+    _rate = 40 * ((_count_transverse_light + _count_transverse_moderate + _count_transverse_severe) / (length_in_ft))
+    if _rate >= 1:
         if _ratio_transverse_severe == max_transverse:
             penalty += 30
             penalties['transverse_severe'] = 30
@@ -304,9 +306,8 @@ def main(damage_shapefile):
         unique_id = _row['UniqueID']
 
         route_area_m2, length_m, width_m = get_route_area(rid, begin_mp, to_mp)
-        #     length_in_ft = get_length_in_feet(rid, begin_mp, to_mp)
-
-        pci, penalty, penalties, counts, areas = pci_score(route_area_m2, subdf)
+        
+        pci, penalty, penalties, counts, areas = pci_score(route_area_m2, length_m*3.28084, subdf)
         if pci > 80:
             road_condition = 'good'
         elif pci > 60 and pci <= 80:
